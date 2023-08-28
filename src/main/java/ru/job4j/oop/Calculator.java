@@ -7,8 +7,8 @@ public class Calculator {
         return x + y;
     }
 
-    public int multiply(int a) {
-        return x * a;
+    public int multiply(int y) {
+        return x * y;
     }
 
     public static int minus(int y) {

@@ -21,7 +21,6 @@ public class Car {
     }
 
     public class Brakes {
-
         public void brake() {
             System.out.println("Торможение");
         }

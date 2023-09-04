@@ -8,6 +8,21 @@ public class Tracker {
     private int size = 0;
 
     /**
+     * @param id индекс которого хотим узнать.
+     * @return возвращает индекс по ID.
+     */
+    private int indexOf(int id) {
+        int rsl = -1;
+        for (int i = 0; i < size; i++) {
+            if (items[i].getId() == id) {
+                rsl = i;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+    /**
      * Добавляет заявку, переданную в аргументах в массив заявок items.
      * Присваивает уникальный ключ в объект item через setID()
      *
@@ -46,21 +61,34 @@ public class Tracker {
     }
 
     /**
-     * Проверяет в цикле все элементы массива items, сравнивая id с аргументом int id
+     * Проверяет все элементы массива items, сравнивая id с аргументом int id
      * и возвращает найденный Item. Если Item не найден - возвращает null.
      *
      * @param id уникальный номер заявки.
      * @return возвращает найденную заявку.
      */
     public Item findById(int id) {
-        Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                rsl = item;
-                break;
-            }
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
+    }
+
+    /**
+     * (85) Найти индекс ячейки по id.
+     * (87) Проставить id с item. При замене нужно сохранять старый id.
+     * (88) Записать в ячейку с найденным индексом объект item. Это входящий параметр.
+     * (89) Вернуть true, если замена произведена или false, если index по id не найден.
+     *
+     * @param id   заявки, которую меняем
+     * @param item объект item.
+     * @return true, если замена произведена или false, если index по id не найден.
+     */
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        if (index != -1) {
+            item.setId(id);
+            items[index] = item;
+            return true;
         }
-        return rsl;
+        return false;
     }
 }

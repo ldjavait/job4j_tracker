@@ -45,6 +45,6 @@ public class Item {
     @Override
     public String toString() {
         return String.format(
-                "Item (    id = %s    ,     name = %s    ,     created = %s)", this.id, this.name, this.created);
+                "Item (id = %s, name = %s, created = %s)", this.id, this.name, this.created);
     }
 }

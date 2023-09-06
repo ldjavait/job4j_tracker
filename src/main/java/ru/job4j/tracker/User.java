@@ -26,6 +26,6 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "User (    id=%s    ,     username=%s    ,     password=%s)", this.id, this.username, this.password);
+                "User (id=%s, username=%s, password=%s)", this.id, this.username, this.password);
     }
 }

@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import java.util.Arrays;
 
+/**
+ * Хранилище под заявки.
+ */
 public class Tracker {
     private final Item[] items = new Item[100];
     private int ids = 1;

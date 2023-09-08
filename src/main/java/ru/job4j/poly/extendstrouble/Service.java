@@ -1,4 +1,4 @@
-package ru.job4j.poly;
+package ru.job4j.poly.extendstrouble;
 
 /**
  * 1. Что такое полиморфизм. [#3819 #252056]

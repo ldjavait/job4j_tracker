@@ -1,4 +1,4 @@
-package ru.job4j.polymorph;
+package ru.job4j.polymorph.vehicle;
 
 public class TownCar implements Vehicle {
     @Override
@@ -24,5 +24,10 @@ public class TownCar implements Vehicle {
     @Override
     public void refill() {
         System.out.println("Заправить 60л бензина");
+    }
+
+    @Override
+    public void chargeBattery() {
+        Vehicle.super.chargeBattery();
     }
 }

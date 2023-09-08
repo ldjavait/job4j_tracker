@@ -1,4 +1,4 @@
-package ru.job4j.polymorph;
+package ru.job4j.polymorph.vehicle;
 
 /**
  * 4.0. Что такое Interface. [#504946 #376743]
@@ -33,5 +33,6 @@ public class Main {
         townCar1.steer();
         townCar1.brake();
         townCar1.refill();
+        Vehicle.getDragCoefficient();
     }
 }

@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
 public class StartUI {
+    private final Output output;
+
+    public StartUI(Output output) {
+        this.output = output;
+    }
+
     /**
      * Инициализирует приложение и запускает выполнение различных пользовательских действий
      *
@@ -21,24 +27,25 @@ public class StartUI {
      * Выводит на экран меню доступных пользовательских действий
      */
     private void showMenu(UserAction[] actions) {
-        System.out.println("Menu.");
+        output.println("Menu.");
         for (int index = 0; index < actions.length; index++) {
-            System.out.println(index + ". " + actions[index].name());
+            output.println(index + ". " + actions[index].name());
         }
     }
 
     public static void main(String[] args) {
+        Output out = new ConsoleOutput();
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(),
-                new EditAction(),
-                new ShowAllAction(),
-                new DeleteAction(),
-                new FindByIdAction(),
-                new FindByNameAction(),
-                new ExitAction()
+                new CreateAction(out),
+                new EditAction(out),
+                new ShowAllAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
+                new FindByNameAction(out),
+                new ExitAction(out)
         };
-        new StartUI().init(input, tracker, actions);
+        new StartUI(out).init(input, tracker, actions);
     }
 }

@@ -27,7 +27,7 @@ public class StartUI {
      * Выводит на экран меню доступных пользовательских действий
      */
     private void showMenu(UserAction[] actions) {
-        output.println("Menu.");
+        output.println("Menu:");
         for (int index = 0; index < actions.length; index++) {
             output.println(index + ". " + actions[index].name());
         }
@@ -44,7 +44,7 @@ public class StartUI {
                 new DeleteAction(out),
                 new FindByIdAction(out),
                 new FindByNameAction(out),
-                new ExitAction(out)
+                new ExitAction()
         };
         new StartUI(out).init(input, tracker, actions);
     }

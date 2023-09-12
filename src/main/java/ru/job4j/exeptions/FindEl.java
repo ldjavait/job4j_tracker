@@ -16,11 +16,22 @@ public class FindEl {
         return rsl;
     }
 
-    public static void main(String[] args) {
-        String[] array = {"test", "test1", "test2"};
+    public static boolean sent(String value, String[] abuses) throws ElementAbuseException {
+        for (String abus : abuses) {
+            if (abus.getBytes().equals(value)) {
+                throw new ElementAbuseException("the key is included in the list of prohibited keys");
+            }
+        }
+
+        return true;
+    }
+
+    public static void process(String[] values, String key, String[] abuses) {
         try {
-            indexOf(array, "test21");
-        } catch (ElementNotFoundException e) {
+            if (indexOf(values, key) != -1) {
+                sent(key, abuses);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -1,4 +1,4 @@
-package ru.job4j.factory;
+package ru.job4j.oaa.factory;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package ru.job4j.factory;
+package ru.job4j.oaa.factory;
 
 public class Rectangle implements Shape {
     int a;

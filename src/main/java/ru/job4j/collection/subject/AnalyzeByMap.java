@@ -2,10 +2,6 @@ package ru.job4j.collection.subject;
 
 import java.util.*;
 
-/**
- * Класс Label содержит результаты: имя и баллы.
- * Этот класс используется как для учеников, так и для предметов.
- */
 public class AnalyzeByMap {
     public static double averageScore(List<Pupil> pupils) {
         double sum = 0D;

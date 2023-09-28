@@ -15,6 +15,6 @@ public class TreeSort {
         num.add(5);
         num.add(1);
         num.add(3);
-        System.out.println("Сортировка по возрастанию" + num);
+        System.out.println("Сортировка по убыванию" + num);
     }
 }

@@ -43,25 +43,28 @@ public class Item {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Item item = (Item) object;
-        return id == item.id && Objects.equals(name, item.name) && Objects.equals(created, item.created);
+        Item item = (Item) o;
+        return id == item.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "Item (id = %s, name = %s, created = %s)", this.id, this.name, this.created);
+        return "Item{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", created=" + created.format(FORMATTER)
+                + '}';
     }
 }

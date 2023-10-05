@@ -29,20 +29,6 @@ public class AnalyzeByMap {
         return labels;
     }
 
-    public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
-        Map<String, Double> temp = new LinkedHashMap<>();
-        for (Pupil pupil : pupils) {
-            for (Subject subject : pupil.subjects()) {
-                temp.put(subject.name(), temp.getOrDefault(subject.name(), 0d) + subject.score());
-            }
-        }
-        List<Label> labels = new ArrayList<>();
-        for (Map.Entry<String, Double> pair : temp.entrySet()) {
-            labels.add(new Label(pair.getKey(), pair.getValue() / pupils.size()));
-        }
-        return labels;
-    }
-
     public static Label bestStudent(List<Pupil> pupils) {
         double sum = 0D;
         List<Label> labels = new ArrayList<>();
@@ -58,11 +44,27 @@ public class AnalyzeByMap {
         return labels.get(labels.size() - 1);
     }
 
+    public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
+        Map<String, Double> temp = new LinkedHashMap<>();
+        for (Pupil pupil : pupils) {
+            for (Subject subject : pupil.subjects()) {
+                temp.merge(subject.name(), (double) subject.score(), (oldValue, newValue) ->
+                        oldValue + subject.score());
+            }
+        }
+        List<Label> labels = new ArrayList<>();
+        for (Map.Entry<String, Double> pair : temp.entrySet()) {
+            labels.add(new Label(pair.getKey(), pair.getValue() / pupils.size()));
+        }
+        return labels;
+    }
+
     public static Label bestSubject(List<Pupil> pupils) {
         Map<String, Double> temp = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                temp.put(subject.name(), temp.getOrDefault(subject.name(), 0d) + subject.score());
+                temp.merge(subject.name(), (double) subject.score(), (oldValue, newValue) ->
+                        oldValue + subject.score());
             }
         }
         List<Label> labels = new ArrayList<>();

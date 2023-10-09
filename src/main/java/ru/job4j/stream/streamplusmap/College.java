@@ -17,31 +17,29 @@ public class College {
      * @return null, если предмет не найден.
      */
     public Student findByAccount(String account) {
-        for (Student student : students.keySet()) {
-            if (student.account().equals(account)) {
-                return student;
-            }
-        }
-        return null;
+        return students.keySet()
+                .stream()
+                .filter(s -> s.account().equals(account))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
      * Поиск предмета по аккаунту и имени предмета.
      *
-     * @param account аккаунт.
-     * @param name    название предмета.
+     * @param accountNumber номер аккаунта.
+     * @param name          название предмета.
      * @return null, если предмет не найден.
      */
-    public Subject findBySubjectByName(String account, String name) {
-        Student a = findByAccount(account);
-        if (a != null) {
-            Set<Subject> subjects = students.get(a);
-            for (Subject subject : subjects) {
-                if (subject.name().equals(name)) {
-                    return subject;
-                }
-            }
+    public Subject findBySubjectByName(String accountNumber, String name) {
+        var account = findByAccount(accountNumber);
+        if (account == null) {
+            return null;
         }
-        return null;
+        return students.get(account)
+                .stream()
+                .filter(s -> s.name().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 }

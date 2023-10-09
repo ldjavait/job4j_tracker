@@ -17,7 +17,7 @@ public class BankService {
      * @param user пользователь, которого добавляем.
      */
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<Account>());
+        users.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
@@ -52,33 +52,30 @@ public class BankService {
      * @return возвращает пользователя, если пользователя нет - вернет null.
      */
     public User findByPassport(String passport) {
-        for (User user : users.keySet()) {
-            if (passport.equals(user.getPassport())) {
-                return user;
-            }
-        }
-        return null;
+        return users.keySet()
+                .stream()
+                .filter(u -> u.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
      * Осуществляет поиск по реквизитам.
      *
-     * @param passport  паспорт пользователя, которого ищем.
-     * @param requisite реквизиты пользователя, которого ищем.
+     * @param passportNumber паспорт пользователя, которого ищем.
+     * @param requisite      реквизиты пользователя, которого ищем.
      * @return возвращает пользователя, если пользователя нет - вернет null.
      */
-    public Account findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
-        if (user == null) {
+    public Account findByRequisite(String passportNumber, String requisite) {
+        var passport = findByPassport(passportNumber);
+        if (passport == null) {
             return null;
         }
-        List<Account> accounts = users.get(user);
-        for (Account account : accounts) {
-            if (requisite.equals(account.getRequisite())) {
-                return account;
-            }
-        }
-        return null;
+        return users.get(passport)
+                .stream()
+                .filter(u -> u.getRequisite().equals(requisite))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
